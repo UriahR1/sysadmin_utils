@@ -31,7 +31,9 @@ read -p "Enter the directory/file to back up (specify full path) :" backup
 
 if [[ "$answer" =~ ^[Yy]$ ]]; then
 	
-	tar -cvzf "${BACKUP_DIR}/${TIMESTAMP}.tar.gz" "$backup" >> "$TARLOG" 2>&1	
+	tar -cvzf "${BACKUP_DIR}/${TIMESTAMP}.tar.gz" "$backup" >> "$TARLOG" 2>&1
+	
+	echo "Source : $backup" >> "$TARLOG"	
 		
 		echo "Backup Complete. Exiting"
 
