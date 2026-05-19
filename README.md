@@ -1,25 +1,31 @@
-# Basic sysadmin tool, useful for backups, rollbacks, and file rotation
+# Sysadmin Tool
 
-sysadmin tree :
+Basic sysadmin tool, useful for backups, rollbacks, and file rotation.
 
-├── backup.sh          # the main script — run manually or via cron
-├── rollback.sh        # restore from a chosen backup
-├── rotate.sh          # prune old backups beyond a set limit
-├── deployment.sh      # sets everything up on a new machine
-├── config.env         # all user settings live here, not hardcoded
-├── logs/              # directory for storing logs
-├── backups/           # backup directory
-└── README.md          
+## Project Structure
 
-These scripts were created to backup files to a specified directory and create a log file
-under the logs/ directory, with timestamps, these timestamps will be named in accordance
-to the time and date that the backup was created. The logfile will store information on the
-directories/files that were backed up. tar Will create a tarball and gunzip the chosen directory and back the directory up to the 
-backups/ directory. rollback Script would then extract and roll back if chosen to run. Most of the
-scripts requires user input in order to create the backup, rollback, or rotation of backups
+```
+sysadmin/
+├── backup.sh        # the main script — run manually or via cron
+├── rollback.sh      # restore from a chosen backup
+├── rotate.sh        # prune old backups beyond a set limit
+├── deployment.sh    # sets everything up on a new machine
+├── config.env       # all user settings live here, not hardcoded
+├── logs/            # directory for storing logs
+├── backups/         # backup directory
+└── README.md
+```
 
-**Note** config.env must be edited with your path(s) in order to store variables that the script will use
-         in order to complete the admin tasks chosen. The config.env.example needs to be renamed to
-         config.env after these paths have been edited
+## Overview
+
+These scripts back up files to a specified directory and create a timestamped log file under `logs/`. Each log is named according to the time and date the backup was created, and stores information about the directories/files that were backed up.
+
+`tar` creates a compressed tarball (`.tar.gz`) of the chosen directory and saves it to `backups/`. The rollback script can then extract and restore a chosen backup. Most scripts require user input to complete the selected admin task.
+
+## Configuration
+
+> **Before running any script**, edit `config.env.example` with your paths, then rename it to `config.env`.
+
+`config.env` stores all the variables the scripts rely on — nothing is hardcoded. Getting this right first ensures all scripts can locate the correct source and destination paths.
          
          
